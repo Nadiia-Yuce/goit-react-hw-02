@@ -47,20 +47,11 @@ export default function App() {
   return (
     <div className={css.container}>
       <Description />
-      <Options update={updateFeedback} type="good">
-        Good
-      </Options>
-      <Options update={updateFeedback} type="neutral">
-        Neutral
-      </Options>
-      <Options update={updateFeedback} type="bad">
-        Bad
-      </Options>
-      {totalFeedback > 0 && (
-        <Options reset={resetFeedback} action="reset">
-          Reset
-        </Options>
-      )}
+      <Options
+        update={updateFeedback}
+        reset={resetFeedback}
+        total={totalFeedback}
+      />
       {totalFeedback > 0 ? (
         <Feedback options={options} positive={positiveFeedback} />
       ) : (
