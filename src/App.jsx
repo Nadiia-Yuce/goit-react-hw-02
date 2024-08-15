@@ -29,6 +29,7 @@ export default function App() {
   //Підрахунок загальної кількості фідбеків
   const totalFeedback = options.good + options.neutral + options.bad;
 
+  const positiveFeedback = Math.round((options.good / totalFeedback) * 100);
   //При зміні властивості об'єкту або масиву преба обов'язково робити копію (через ...) для уникнення мутації і втрати значень
   function updateFeedback(feedbackType) {
     setOptions({ ...options, [feedbackType]: options[feedbackType] + 1 });
@@ -60,8 +61,8 @@ export default function App() {
           Reset
         </Options>
       )}
-      {totalFeedback ? (
-        <Feedback options={options} total={totalFeedback} />
+      {totalFeedback > 0 ? (
+        <Feedback options={options} positive={positiveFeedback} />
       ) : (
         <Notification />
       )}
